@@ -18,9 +18,9 @@ import 'react-navigation';
 import { createAppContainer, NavigationActions } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 
-import App from './App';
-import StudentNavigator from './src/student/routes'
-import ParentNavigator from './src/parent/routes'
+import {
+  responsiveWidth
+} from "react-native-responsive-dimensions";
 
 
 export default function ScreenLogin( {navigation} ) {  
@@ -86,11 +86,13 @@ export default function ScreenLogin( {navigation} ) {
     
     Animated.parallel([
       Animated.spring(offset.y, {
+        useNativeDriver: true,
         toValue: 0,
         speed: 1,
         //bounciness: 4
       }),
       Animated.timing(opacity, {
+        useNativeDriver: true,
         toValue: 1,
         duration: 400
       })

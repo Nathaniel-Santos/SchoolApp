@@ -10,6 +10,12 @@ import {
   Dimensions
 } from 'react-native';
 
+import {
+  responsiveHeight,
+  responsiveWidth,
+  responsiveFontSize, responsiveScreenFontSize, responsiveScreenHeight, responsiveScreenWidth
+} from "react-native-responsive-dimensions";
+
 export default class HomeScreen extends React.Component {
     static navigationOptions = {
       tabBarLabel: 'Inicio'
@@ -79,7 +85,7 @@ const styles = StyleSheet.create({
     texto: {
       opacity: 0.8,
       fontWeight: 'bold',
-      fontSize: 16,
+      fontSize: responsiveScreenFontSize(1.8), //16,
       color: '#f0edf6',
     },
     botao: {
@@ -87,8 +93,8 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       padding: 10,
-      height: 120,
-      width: 130,
+      height: responsiveScreenHeight(18),//120,
+      width: responsiveScreenWidth(10),//130,
       margin: 10,
       borderColor: 'black',
       borderRadius: 10,
@@ -102,5 +108,6 @@ const styles = StyleSheet.create({
       shadowOpacity: 0.25,
       shadowRadius: 3.84,
       elevation: 5,
-    }
+    },
+    
 });

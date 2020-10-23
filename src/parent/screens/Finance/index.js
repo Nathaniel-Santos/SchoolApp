@@ -33,6 +33,7 @@ export default class FinanceScreen extends React.Component {
     })
     
     Animated.spring(this.animation, {
+      useNativeDriver: true,
       toValue,
       friction: 5
     }).start();

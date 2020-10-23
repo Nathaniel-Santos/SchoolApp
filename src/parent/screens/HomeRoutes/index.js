@@ -4,6 +4,7 @@ import Home from '../Home'
 import CardScreen from '../Card';
 import FinanceScreen from '../Finance';
 import BoletimScreen from '../Boletim';
+import Detail1 from '../Boletim/Detail1';
 
 
 const HomeNavigator = createStackNavigator({
@@ -26,6 +27,21 @@ const HomeNavigator = createStackNavigator({
         screen: BoletimScreen,
         navigationOptions: {
             title: 'Boletim',
+            headerTitleStyle: {
+                color: '#eeeeee',
+                fontWeight: 'bold'
+            },
+            headerTitleAlign: 'center',
+            headerStyle: {
+                backgroundColor: '#406799'
+            },
+            headerTintColor: '#ffffff'
+        }
+    },
+    BoletimDetail: {
+        screen: Detail1,
+        navigationOptions: {
+            title: 'Notas',
             headerTitleStyle: {
                 color: '#eeeeee',
                 fontWeight: 'bold'

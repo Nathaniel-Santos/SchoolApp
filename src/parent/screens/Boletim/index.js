@@ -1,86 +1,80 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 import 'react-native-gesture-handler';
 import {
   StyleSheet, 
   View, 
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  FlatList
 } from 'react-native';
 
 import {
+  responsiveFontSize,
+  responsiveScreenHeight,
+  responsiveScreenWidth,
   responsiveWidth
 } from "react-native-responsive-dimensions";
 
-export default class BoletimScreen extends React.Component {
-    render() {
-      return (
+export default function BoletimScreen( {navigation} ) {
+
+    const disciplinas = [
+      {id: '1', nome: 'Português', 
+        avaliacoes: {
+          AV1: '8.0',
+          AV2: '7.5',
+          RE1S: '9.0',
+        }
+      },
+      {id: '2', nome: 'Matemática', Nota: '7.5'},
+      {id: '3', nome: 'Ciências', Nota: '6.0'},
+      {id: '4', nome: 'História', Nota: '10.0'},
+      {id: '5', nome: 'Geografia', Nota: '7.0'},
+      {id: '6', nome: 'Artes', Nota: '9.0'},
+      {id: '7', nome: 'Ed. Física', Nota: '10.0'},
+    ] 
+    
+    function Disciplina({NomeDisciplina, Avaliacoes}){    
+
+      return(
         <View style={styles.container}>
-
-            <View style={styles.container2}>
-              <TouchableOpacity style={styles.buttonPaid}>
-                <Text style={styles.texto}>PORTUGUES</Text>
-                <Text style={styles.status}>></Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.buttonPaid}>
-                <Text style={styles.texto}>MATEMÁTICA</Text>
-                <Text style={styles.status}>></Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity style={styles.buttonPaid}>
-                <Text style={styles.texto}>CIÊNCIAS</Text>
-                <Text style={styles.status}>></Text>
-              </TouchableOpacity>
-     
-              <TouchableOpacity style={styles.buttonPaid}>
-                <Text style={styles.texto}>HISTÓRIA</Text>
-                <Text style={styles.status}>></Text>
-              </TouchableOpacity>         
-           
-              <TouchableOpacity style={styles.buttonPaid}>
-                <Text style={styles.texto}>GEOGRAFIA</Text>
-                <Text style={styles.status}>></Text>
-              </TouchableOpacity>
-            
-              <TouchableOpacity style={styles.buttonPaid}>
-                <Text style={styles.texto}>ARTES</Text>
-                <Text style={styles.status}>></Text>
-              </TouchableOpacity>
-            
-              <TouchableOpacity style={styles.buttonPaid}>
-                <Text style={styles.texto}>ED. FÍSICA</Text>
-                <Text style={styles.status}>></Text>
-              </TouchableOpacity>
-              
-            </View>
-          </View>
-      )
+            <TouchableOpacity 
+            style={styles.button}
+            onPress={()=> navigation.navigate('BoletimDetail', {NomeDisciplina, Avaliacoes})}
+            >
+                <Text style={styles.texto}>{NomeDisciplina}</Text>
+            </TouchableOpacity>
+        </View>
+      );
     }
+    
+    return (
+      
+      
+      <View>
+            <FlatList 
+            keyExtractor={disciplinas.id}
+            data={disciplinas}
+            renderItem={ ({item}) => <Disciplina NomeDisciplina={item.nome} Avaliacoes={item.id}/> }
+            />
+        </View>
+          
+          );
   }
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      backgroundColor: '#f0edf6' 
+      alignItems: 'center',
+      marginTop: 1
     },
-    container2: {
-      marginTop: 30 
-    },
-    month: {
-      flex: 1,
+    button: {
+      
       justifyContent: 'space-between',
       alignItems: 'center',
-      alignContent: 'center'
-    },
-    buttonPaid: {
-      flex: 1,
-      justifyContent: 'space-between',
-      alignItems: 'flex-start',
-      maxHeight: 50,
-      height: 0,
-      width: responsiveWidth(98),
+      //maxHeight: 50,
+      height: responsiveScreenHeight(6),
+      width: responsiveScreenWidth(95),
       margin: 5,
       borderColor: 'black',
       borderRadius: 5,
@@ -89,18 +83,11 @@ export default class BoletimScreen extends React.Component {
     },
     texto: {
       textAlign: 'right',
-      fontSize: 20,
+      fontSize: responsiveFontSize(2.1),
       color: '#eee',
       marginLeft: 10,
-      marginTop: 8,
-    },
-    status: {
-      textAlign: 'left',
-      fontSize: 25,
-      color: '#eee',
-      marginRight: 20,
-      marginTop: 4,
-      fontWeight: 'bold'
+      //marginTop: 8,
+      
     },
     SubTitle: {
       fontSize: 24,

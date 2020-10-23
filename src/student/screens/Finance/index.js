@@ -38,6 +38,7 @@ export default function FinanceScreen() {
     
     
     Animated.spring(animation, {
+      useNativeDriver: true,
       toValue,
       friction: 5
     }).start();
